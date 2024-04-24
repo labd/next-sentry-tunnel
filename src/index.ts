@@ -1,7 +1,6 @@
 /**
- * Handles posting to Sentry
- * @param request
- * @returns
+ * POST endpoint that acts as a tunnel for Sentry's ingestion API.
+ * It checks whether the DSN and project is allowed to post to Sentry.
  */
 export async function POST(request: Request) {
   try {
@@ -17,7 +16,7 @@ export async function POST(request: Request) {
       throw new Error(`Invalid Sentry DSN: ${dsn.hostname}`);
     }
 
-    if (!projectId) {
+    if (!projectId || allowedProjects.includes(projectId)) {
       throw new Error(`Invalid Sentry DSN: ${dsn.pathname}`);
     }
 
