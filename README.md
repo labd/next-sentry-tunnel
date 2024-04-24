@@ -28,3 +28,14 @@ Then set up the handlers in `app/api/tunnel/route.{ts,js}` or your own route of 
 // Route handler file
 export { POST } from "next-sentry-tunnel";
 ```
+
+Afterwards set up your `sentry.client.config.{ts,js}` to point to the tunnel:
+```typescript
+// sentry.client.config.ts
+import * as Sentry from "@sentry/nextjs";
+
+Sentry.init({
+    ...
+    tunnel: "/api/tunnel" // Or your own route of choice
+})
+```
