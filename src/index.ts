@@ -34,15 +34,3 @@ export async function POST(request: Request) {
     });
   }
 }
-
-/**
- *
- * @param request
- * @todo Not sure if this is needed, or if not adding it will return a 405
- */
-export async function GET(request: Request) {
-  return new Response("", {
-    status: 405,
-    statusText: "Method Not Allowed",
-  });
-}
